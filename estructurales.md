@@ -242,7 +242,7 @@ noti.enviar("Hola!");
 Proporciona una interfaz simplificada para un conjunto de interfaces más complejas dentro de un subsistema.
 
 **Estructura UML:**  
-![Diagrama UML Facade](./Imagenes/Estructurales/facade.png)
+![Diagrama UML Facade](./Imagenes/Estructurales/fecade.png)
 
 **Lenguajes de referencia:**  
 ### Java
