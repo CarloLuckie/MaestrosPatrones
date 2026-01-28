@@ -15,6 +15,7 @@ Garantiza que una clase tenga una única instancia en toda la aplicación y prop
 ![Diagrama UML Singleton](./Imagenes/Creacionales/singleton.png)
 
 **Lenguajes de referencia:**  
+### Java
 ```Java 
 public class Singleton {
     private static Singleton instance;
@@ -32,6 +33,7 @@ public class Singleton {
     }
 }
 ```
+### JavaScript
 ```JavaScript  
 class Database {
   constructor() {
