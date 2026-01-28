@@ -15,9 +15,34 @@ Garantiza que una clase tenga una única instancia en toda la aplicación y prop
 ![Diagrama UML Singleton](./Imagenes/Creacionales/singleton.png)
 
 **Lenguajes de referencia:**  
-- Java  
-- JavaScript  
+```Java 
+public class Singleton {
+    private static Singleton instance;
+    public String value;
 
+    private Singleton(String value) {
+        this.value = value;
+    }
+
+    public static Singleton getInstance(String value) {
+        if (instance == null) {
+            instance = new Singleton(value);
+        }
+        return instance;
+    }
+}
+```
+```JavaScript  
+class Database {
+  constructor() {
+    if (Database.instance) {
+      return Database.instance;
+    }
+    this.connection = "Conectado";
+    Database.instance = this;
+  }
+}
+```
 ---
 
 ## 2. Factory Method (Método Fábrica)
