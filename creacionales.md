@@ -55,12 +55,46 @@ class Database {
 Define una interfaz para crear un objeto, pero deja que las subclases decidan qué clase instanciar, delegando la creación a ellas.
 
 **Estructura UML:**  
-*(Agregar imagen UML si aplica)*
+![Diagrama UML Factory Method](./Imagenes/Creacionales/factorymethod.jpg)
 
 **Lenguajes de referencia:**  
-- Java  
-- JavaScript  
+### Java
+```Java 
+// Producto
+interface Transporte {
+    void entregar();
+}
 
+// Creador
+abstract class Logistica {
+    public abstract Transporte crearTransporte();
+}
+
+// Creador Concreto
+class LogisticaMaritima extends Logistica {
+    @Override
+    public Transporte crearTransporte() {
+        return new Barco();
+    }
+}
+```
+### JavaScript
+```JavaScript  
+class Carro {
+    conducir() { return "Conduciendo un auto"; }
+}
+
+class Camion {
+    conducir() { return "Manejando un camión"; }
+}
+
+class VehicleFactory {
+    crearVehiculo(tipo) {
+        if (tipo === "carro") return new Carro();
+        if (tipo === "camion") return new Camion();
+    }
+}
+```
 ---
 
 ## 3. Abstract Factory (Fábrica Abstracta)
@@ -74,9 +108,40 @@ Permite crear familias de objetos relacionados o dependientes sin especificar su
 *(Agregar imagen UML si aplica)*
 
 **Lenguajes de referencia:**  
-- Java  
-- JavaScript  
+### Java
+```Java 
+// Interfaz de Fábrica
+interface GUIFactory {
+    Boton crearBoton();
+    Checkbox crearCheckbox();
+}
 
+// Fábrica Concreta (Windows)
+class WinFactory implements GUIFactory {
+    public Boton crearBoton() { return new WinBoton(); }
+    public Checkbox crearCheckbox() { return new WinCheckbox(); }
+}
+```
+### JavaScript
+```JavaScript  
+// Fábrica de muebles modernos
+const ModernFurnitureFactory = {
+    createChair: () => new ModernChair(),
+    createSofa: () => new ModernSofa()
+};
+
+// Fábrica de muebles victorianos
+const VictorianFurnitureFactory = {
+    createChair: () => new VictorianChair(),
+    createSofa: () => new VictorianSofa()
+};
+
+// Cliente
+function buildFurniture(factory) {
+    const chair = factory.createChair();
+    const sofa = factory.createSofa();
+}
+```
 ---
 
 ## 4. Builder (Constructor)
@@ -90,9 +155,55 @@ Separa la construcción de un objeto complejo de su representación, permitiendo
 *(Agregar imagen UML si aplica)*
 
 **Lenguajes de referencia:**  
-- Java  
-- JavaScript  
+### Java
+```Java 
+public class Pizza {
+    private String masa;
+    private String salsa;
+    
+    // El Builder estático interno
+    public static class Builder {
+        private Pizza pizza;
+        
+        public Builder() { pizza = new Pizza(); }
+        
+        public Builder conMasa(String masa) {
+            pizza.masa = masa;
+            return this;
+        }
+        
+        public Pizza build() { return pizza; }
+    }
+}
 
+// Uso:
+// Pizza p = new Pizza.Builder().conMasa("Fina").build();
+```
+### JavaScript
+```JavaScript  
+class UserBuilder {
+    constructor(name) {
+        this.user = { name: name };
+    }
+
+    setAge(age) {
+        this.user.age = age;
+        return this; // Retorna 'this' para encadenar métodos
+    }
+
+    setPhone(phone) {
+        this.user.phone = phone;
+        return this;
+    }
+
+    build() {
+        return this.user;
+    }
+}
+
+// Uso
+const user = new UserBuilder("Carlos").setAge(25).build();
+```
 ---
 
 ## 5. Prototype (Prototipo)
@@ -106,5 +217,34 @@ Permite copiar objetos existentes sin que el código dependa de sus clases, dele
 *(Agregar imagen UML si aplica)*
 
 **Lenguajes de referencia:**  
-- Java  
-- JavaScript  
+### Java
+```Java 
+abstract class Shape implements Cloneable {
+    public int x, y;
+    
+    public Shape clone() {
+        try {
+            return (Shape) super.clone();
+        } catch (CloneNotSupportedException e) {
+            return null;
+        }
+    }
+}
+
+// Uso
+// Shape circuloCopia = circuloOriginal.clone();
+```
+### JavaScript
+```JavaScript  
+const zombieOriginal = {
+    comer: function() { console.log("Cerebros..."); },
+    salud: 100
+};
+
+// Crear nuevo objeto usando 'zombieOriginal' como prototipo
+const zombieCopia = Object.create(zombieOriginal);
+zombieCopia.salud = 50; // Modificamos solo la copia
+
+console.log(zombieOriginal.salud); // 100
+console.log(zombieCopia.salud);    // 50
+```
