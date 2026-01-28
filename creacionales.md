@@ -105,7 +105,7 @@ class VehicleFactory {
 Permite crear familias de objetos relacionados o dependientes sin especificar sus clases concretas.
 
 **Estructura UML:**  
-*(Agregar imagen UML si aplica)*
+![Diagrama UML Abstract Factory](./Imagenes/Creacionales/abstractfactory.png)
 
 **Lenguajes de referencia:**  
 ### Java
@@ -152,7 +152,7 @@ function buildFurniture(factory) {
 Separa la construcción de un objeto complejo de su representación, permitiendo crear diferentes representaciones con el mismo proceso de construcción.
 
 **Estructura UML:**  
-*(Agregar imagen UML si aplica)*
+![Diagrama UML Builder](./Imagenes/Creacionales/builder.png)
 
 **Lenguajes de referencia:**  
 ### Java
@@ -214,7 +214,7 @@ const user = new UserBuilder("Carlos").setAge(25).build();
 Permite copiar objetos existentes sin que el código dependa de sus clases, delegando el proceso de clonación al propio objeto.
 
 **Estructura UML:**  
-*(Agregar imagen UML si aplica)*
+![Diagrama UML Prototype](./Imagenes/Creacionales/prototype.png)
 
 **Lenguajes de referencia:**  
 ### Java
